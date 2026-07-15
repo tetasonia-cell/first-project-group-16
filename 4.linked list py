@@ -1,0 +1,89 @@
+# Time Complexity:
+# Insert at Head: O(1)
+# Insert at Tail: O(n)
+# Delete by Value: O(n)
+# Traverse: O(n)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+
+    def __init__(self):
+        self.head = None
+
+    # Insert at Head
+    def insert_head(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    # Insert at Tail
+    def insert_tail(self, data):
+        new_node = Node(data)
+
+        if self.head is None:
+            self.head = new_node
+            return
+
+        current = self.head
+        while current.next:
+            current = current.next
+
+        current.next = new_node
+
+    # Delete by Value
+    def delete(self, value):
+        current = self.head
+
+        # If the head contains the value
+        if current and current.data == value:
+            self.head = current.next
+            return
+
+        previous = None
+
+        while current and current.data != value:
+            previous = current
+            current = current.next
+
+        if current:
+            previous.next = current.next
+
+    # Traverse and Print
+    def traverse(self):
+        current = self.head
+
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+
+        print("None")
+
+
+# Demonstration
+ll = LinkedList()
+
+print("Insert at Head: 20")
+ll.insert_head(20)
+
+print("Insert at Head: 10")
+ll.insert_head(10)
+
+print("Insert at Tail: 30")
+ll.insert_tail(30)
+
+print("Insert at Tail: 40")
+ll.insert_tail(40)
+
+print("\nCurrent List:")
+ll.traverse()
+
+print("\nDelete value 30")
+ll.delete(30)
+
+print("List after deletion:")
+ll.traverse()
