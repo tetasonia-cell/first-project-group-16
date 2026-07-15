@@ -1,0 +1,42 @@
+# Time Complexity:
+# Read: O(1), Update: O(1), Traverse: O(n), Max: O(n), Insert: O(n)
+
+marks = [70, 80, 90, 60, 85]
+
+print("Original Array:", marks)
+
+# Read
+index = 2
+print(f"Value at index {index}:", marks[index])
+
+# Update
+marks[2] = 95
+print("After Update:", marks)
+
+# Traverse
+print("Traversing Array:")
+for mark in marks:
+    print(mark, end=" ")
+print()
+
+# Find Maximum
+maximum = marks[0]
+for mark in marks:
+    if mark > maximum:
+        maximum = mark
+print("Maximum Value:", maximum)
+
+# Insert (without using insert())
+value = 75
+position = 3
+
+print("Before Insertion:", marks)
+
+marks.append(0)  # create extra space
+
+for i in range(len(marks)-1, position, -1):
+    marks[i] = marks[i-1]
+
+marks[position] = value
+
+print("After Insertion:", marks)
