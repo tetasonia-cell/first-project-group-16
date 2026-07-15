@@ -1,0 +1,73 @@
+# Time Complexity:
+# Insertion: O(h) where h is the height of the tree
+# Breadth-First Traversal (BFS): O(n)
+# Depth-First Traversal (DFS): O(n)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+# Insert into Binary Search Tree
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+
+# Breadth-First Traversal (Level Order)
+def bfs(root):
+    if root is None:
+        return
+
+    queue = [root]
+
+    while queue:
+        current = queue.pop(0)
+        print(current.data, end=" ")
+
+        if current.left:
+            queue.append(current.left)
+
+        if current.right:
+            queue.append(current.right)
+
+
+# Depth-First Traversal (Preorder)
+def dfs(root):
+    if root:
+        print(root.data, end=" ")
+        dfs(root.left)
+        dfs(root.right)
+
+
+# -----------------------
+# Build the Tree
+# -----------------------
+
+values = [50, 30, 70, 20, 40, 60, 80]
+
+root = None
+
+for value in values:
+    root = insert(root, value)
+
+# -----------------------
+# Display Traversals
+# -----------------------
+
+print("Breadth-First Traversal (Level Order):")
+bfs(root)
+
+print("\n")
+
+print("Depth-First Traversal (Preorder):")
+dfs(root)

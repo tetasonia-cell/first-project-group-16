@@ -1,0 +1,63 @@
+# Time Complexity:
+# Linear Search: O(n)
+# Binary Search: O(log n)
+
+# Sorted list of 20 items
+numbers = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
+           55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
+
+target = 75
+
+
+# Linear Search
+def linear_search(arr, target):
+    comparisons = 0
+
+    for i in range(len(arr)):
+        comparisons += 1
+
+        if arr[i] == target:
+            return i, comparisons
+
+    return -1, comparisons
+
+
+# Binary Search
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    comparisons = 0
+
+    while low <= high:
+        comparisons += 1
+
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid, comparisons
+
+        elif arr[mid] < target:
+            low = mid + 1
+
+        else:
+            high = mid - 1
+
+    return -1, comparisons
+
+
+# Run both searches
+linear_index, linear_comparisons = linear_search(numbers, target)
+binary_index, binary_comparisons = binary_search(numbers, target)
+
+print("Sorted List:")
+print(numbers)
+
+print("\nSearching for:", target)
+
+print("\nLinear Search")
+print("Index:", linear_index)
+print("Comparisons:", linear_comparisons)
+
+print("\nBinary Search")
+print("Index:", binary_index)
+print("Comparisons:", binary_comparisons)
